@@ -21,11 +21,13 @@ public class SearchProduct extends AppCompatActivity {
 
     public void productsDetailsOnClick(View view) {
         final EditText inputSearchEditText =(EditText)findViewById(R.id.inputSearchEditText);
-        final String input_search = inputSearchEditText.getText().toString();
-        final Intent i = new Intent(this, ProductDetails.class);
-        i.putExtra("search_string", input_search);
+        final String inputSearch = inputSearchEditText.getText().toString();
+        final Intent intent = new Intent(this, ProductDetails.class);
+        intent.putExtra(
+                this.getResources().getString(R.string.lookup_code_extras_key),
+                inputSearch);
 
-        this.startActivity(i);
+        this.startActivity(intent);
     }
 
     @Override
