@@ -1,22 +1,34 @@
-package org.npc.lion_client_ui;
+package org.npc.lion_client_ui.commands;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ListView;
+
+import org.npc.lion_client_ui.R;
+import org.npc.lion_client_ui.api.models.Product;
+
+import java.util.List;
 
 public class SearchProduct extends AppCompatActivity {
+
+    private List<Product> products;
+    private ListView lv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
+
+        ////////////////////////////
+        lv = (ListView) findViewById(R.id.products_list_view);
+
+
+
     }
 
     public void productsDetailsOnClick(View view) {

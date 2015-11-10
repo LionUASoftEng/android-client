@@ -1,9 +1,11 @@
-package org.npc.lion_client_ui;
+package org.npc.lion_client_ui.commands;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import org.npc.lion_client_ui.R;
 
 public class ProductDetails extends AppCompatActivity {
 

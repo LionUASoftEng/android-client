@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SearchProduct"
+            android:name=".commands.SearchProduct"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,12 +17,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProductDetails"
+        <activity android:name=".commands.ProductDetails"
             android:label="@string/title_activity_product_details"
-            android:parentActivityName=".SearchProduct" >
+            android:parentActivityName=".commands.SearchProduct" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.npc.lion_client_ui.ProductDetails" />
+                android:value=".commands.ProductDetails" />
         </activity>
     </application>
 
