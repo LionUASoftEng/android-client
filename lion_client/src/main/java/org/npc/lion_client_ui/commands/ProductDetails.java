@@ -30,13 +30,13 @@ public class ProductDetails extends AppCompatActivity {
         );
 
         lookup_code_textview = (TextView) findViewById(R.id.lookup_code_textView);
-        lookup_code_textview.setText(R.string.lookup_code + lookup_code);
+        lookup_code_textview.setText(R.string.lookup_code);
         description_content = (TextView) findViewById(R.id.description_content_textview);
         description_content.setText( description );
         price_textview = (TextView) findViewById(R.id.price_textview);
-        price_textview.setText(R.string.price + price );
+        price_textview.setText(R.string.price);
         quantity_textview = (TextView) findViewById(R.id.quantity_textview);
-        quantity_textview.setText(R.string.quantity + quantity );
+        quantity_textview.setText(R.string.quantity);
 
     }
 
