@@ -24,30 +24,124 @@ public class Product implements ConvertToJsonInterface, LoadFromJsonInterface<Pr
         return this;
     }
 
-    private String lookupCode;
+    private String description;
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Product setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    private String itemLookupCode;
     public String getLookupCode() {
-        return this.lookupCode;
+        return this.itemLookupCode;
     }
     public Product setLookupCode(String lookupCode) {
-        this.lookupCode = lookupCode;
+        this.itemLookupCode = itemLookupCode;
         return this;
     }
 
-    private int count;
-    public int getCount() {
-        return this.count;
+    private int itemType;
+    public int getItemType(){
+        return this.itemType;
     }
-    public Product setCount(int count) {
-        this.count = count;
+    public Product setItemType(int itemType){
+        this.itemType = itemType;
         return this;
     }
 
-    private Date createdOn;
-    public Date getCreatedOn() {
-        return this.createdOn;
+    private double price;
+    public double getPrice() {
+        return this.price;
     }
-    public Product setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public Product setPrice(double price) {
+        this.price = price;
+        return this;
+    }
+
+    private double cost;
+    public double getCost() {
+        return this.cost;
+    }
+    public Product setCost(double cost) {
+        this.cost = cost;
+        return this;
+    }
+
+    private int quantity;
+    public int getQuantity() {
+        return this.quantity;
+    }
+    public Product setQuantity(int quantity) {
+        this.quantity = quantity;
+        return this;
+    }
+
+    private int reorderPoint;
+    public int getReorderPoint() {
+        return reorderPoint;
+    }
+    public Product setReorderPoint(int reorderPoint){
+        this.reorderPoint = reorderPoint;
+        return this;
+    }
+
+    private int restockLevel;
+
+    public int getRestockLevel() {
+        return restockLevel;
+    }
+    public Product setRestockLevel(int restockLevel){
+        this.restockLevel = restockLevel;
+        return this;
+    }
+
+    private UUID parentItem;
+    public UUID getParentItem() {
+        return parentItem;
+    }
+    public Product setParentItem(){
+        this.parentItem = parentItem;
+        return this;
+    }
+
+    private String extendedDescription;
+    public String getExtendedDescription() {
+        return extendedDescription;
+    }
+    public Product setextendedDescription(String extendedDescription){
+        this.extendedDescription = extendedDescription;
+        return this;
+    }
+
+    private boolean inactive;
+    public boolean getInactive(){
+        return inactive;
+    }
+    public Product setInactive(boolean inactive){
+        this.inactive = inactive;
+        return this;
+    }
+
+    private double MSRP;
+
+    public double getMSRP() {
+        return MSRP;
+    }
+    public Product setMSRP(double MSRP){
+        this.MSRP = MSRP;
+        return this;
+    }
+
+    private Date dateCreated;
+    public Date getDateCreated() {
+        return this.dateCreated;
+    }
+    public Product setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
         return this;
     }
 
@@ -82,13 +176,26 @@ public class Product implements ConvertToJsonInterface, LoadFromJsonInterface<Pr
             this.id = UUID.fromString(value);
         }
 
-        this.lookupCode = rawJsonObject.optString(ProductFieldNames.LOOKUP_CODE);
-        this.count = rawJsonObject.optInt(ProductFieldNames.COUNT, -1);
+        this.description = rawJsonObject.optString(ProductFieldNames.DESCRIPTION);
+        this.itemLookupCode = rawJsonObject.optString(ProductFieldNames.ITEM_LOOKUP_CODE);
+        this.price = rawJsonObject.optDouble(ProductFieldNames.PRICE);
+        this.itemType = rawJsonObject.optInt(ProductFieldNames.ITEMTYPE);
+        this.cost = rawJsonObject.optDouble(ProductFieldNames.COST);
+        this.quantity = rawJsonObject.optInt(ProductFieldNames.QUANTITY, -1);
+        this.reorderPoint = rawJsonObject.optInt(ProductFieldNames.REORDER_POINT);
+        this.restockLevel = rawJsonObject.optInt(ProductFieldNames.RESTOCK_LEVEL);
+        String PIValue = rawJsonObject.optString(ProductFieldNames.PARENT_ITEM);
+        if (!StringUtils.isBlank(PIValue)) {
+            this.parentItem = UUID.fromString(PIValue);
+        }
+        this.extendedDescription = rawJsonObject.optString(ProductFieldNames.EXTENDED_DESCRIPTION);
+        this.inactive = rawJsonObject.optBoolean(ProductFieldNames.INACTIVE);
+        this.MSRP = rawJsonObject.optDouble(ProductFieldNames.MSRP);
 
-        value = rawJsonObject.optString(ProductFieldNames.CREATED_ON);
+        value = rawJsonObject.optString(ProductFieldNames.DATE_CREATED);
         if (!StringUtils.isBlank(value)) {
             try {
-                this.createdOn = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(value);
+                this.dateCreated = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").parse(value);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -110,9 +217,18 @@ public class Product implements ConvertToJsonInterface, LoadFromJsonInterface<Pr
 
         try {
             jsonObject.put(ProductFieldNames.ID, this.id.toString());
-            jsonObject.put(ProductFieldNames.LOOKUP_CODE, this.lookupCode);
-            jsonObject.put(ProductFieldNames.COUNT, Integer.toString(this.count));
-            jsonObject.put(ProductFieldNames.CREATED_ON, (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")).format(this.createdOn));
+            jsonObject.put(ProductFieldNames.DESCRIPTION, this.description);
+            jsonObject.put(ProductFieldNames.ITEM_LOOKUP_CODE, this.itemLookupCode);
+            jsonObject.put(ProductFieldNames.PRICE, Double.toString(this.price));
+            jsonObject.put(ProductFieldNames.ITEMTYPE, Integer.toString(this.itemType));
+            jsonObject.put(ProductFieldNames.QUANTITY, Integer.toString(this.quantity));
+            jsonObject.put(ProductFieldNames.REORDER_POINT, Integer.toString(this.reorderPoint));
+            jsonObject.put(ProductFieldNames.RESTOCK_LEVEL, Integer.toString(this.restockLevel));
+            jsonObject.put(ProductFieldNames.PARENT_ITEM, this.parentItem.toString());
+            jsonObject.put(ProductFieldNames.EXTENDED_DESCRIPTION, this.extendedDescription);
+            jsonObject.put(ProductFieldNames.INACTIVE, this.inactive);
+            jsonObject.put(ProductFieldNames.MSRP, Double.toString(this.MSRP));
+            jsonObject.put(ProductFieldNames.DATE_CREATED, (new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")).format(this.dateCreated));
             jsonObject.put(ProductFieldNames.API_REQUEST_MESSAGE, this.apiRequestMessage);
             jsonObject.put(ProductFieldNames.API_REQUEST_STATUS, this.apiRequestStatus.name());
         } catch (JSONException e) {
@@ -123,10 +239,20 @@ public class Product implements ConvertToJsonInterface, LoadFromJsonInterface<Pr
     }
 
     public Product() {
-        this.count = -1;
-        this.lookupCode = "";
+        this.description = "";
+        this.price = -0.999;
+        this.itemType = 0;
+        this.itemLookupCode = "";
+        this.cost = -0.999;
+        this.quantity = -1;
+        this.reorderPoint = 0;
+        this.restockLevel = 0;
+        this.parentItem = UUID.fromString(StringUtils.EMPTY);
+        this.extendedDescription = "";
+        this.inactive = false;
+        this.MSRP = 0.0;
         this.id = new UUID(0, 0);
-        this.createdOn = new Date();
+        this.dateCreated = new Date();
         this.apiRequestMessage = StringUtils.EMPTY;
         this.apiRequestStatus = ProductApiRequestStatus.OK;
     }
