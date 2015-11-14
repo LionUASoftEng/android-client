@@ -247,7 +247,7 @@ public class Product implements ConvertToJsonInterface, LoadFromJsonInterface<Pr
         this.quantity = -1;
         this.reorderPoint = 0;
         this.restockLevel = 0;
-        this.parentItem = UUID.fromString(StringUtils.EMPTY);
+        this.parentItem = UUID.fromString("00000000-00000000-00000000-00000000");
         this.extendedDescription = "";
         this.inactive = false;
         this.MSRP = 0.0;
