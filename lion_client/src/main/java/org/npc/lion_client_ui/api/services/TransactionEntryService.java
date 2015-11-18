@@ -25,10 +25,10 @@ public class TransactionEntryService extends BaseRemoteService {
         }
     }
 
-    public List<TransactionEntry> getTransactionEntries() {
+    public List<TransactionEntry> getTransactionEntries(UUID transactionId) {
         List<TransactionEntry> transactionEntries;
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRIES })
+                (new PathElementInterface[] { ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRIES }), transactionId
         );
 
         if (rawJsonObject != null) {
