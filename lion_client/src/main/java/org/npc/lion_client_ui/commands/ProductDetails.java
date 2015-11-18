@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import org.npc.lion_client_ui.api.enums.ProductApiRequestStatus;
 import org.npc.lion_client_ui.api.models.Product;
@@ -30,6 +31,7 @@ public class ProductDetails extends AppCompatActivity {
 
         lookup_code_textview = (TextView) findViewById(R.id.lookup_code_textView);
         description_content = (TextView) findViewById(R.id.description_content_textview);
+        description_content.setText(description);
         price_textview = (TextView) findViewById(R.id.price_textview);
         quantity_textview = (TextView) findViewById(R.id.quantity_textview);
 
@@ -63,6 +65,15 @@ public class ProductDetails extends AppCompatActivity {
                 getLookupCodeTextView().setText(result.getApiRequestStatus().name());
             }
         }
+    }
+
+    //return to SearchProduct screen 3
+    public void cancelOnClick(View view){
+        finish();
+    }
+
+    public void applyOnClick(View view){
+        //take quantity from inputAddQuantity textview and add to actual quantity
     }
 
     private TextView getLookupCodeTextView() {

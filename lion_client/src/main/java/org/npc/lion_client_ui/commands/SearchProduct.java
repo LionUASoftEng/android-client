@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import org.npc.lion_client_ui.R;
+import org.npc.lion_client_ui.adapters.ProductListAdapter;
 import org.npc.lion_client_ui.api.models.Product;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class SearchProduct extends AppCompatActivity {
 
     private List<Product> products;
     private ListView productsLV;
+    private ProductListAdapter productListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +31,22 @@ public class SearchProduct extends AppCompatActivity {
         //Listview for under the search button
         productsLV = (ListView) findViewById(R.id.products_list_view);
 
-        //temp testing of listview displaying
+        this.products = new ArrayList<>();
+        this.productListAdapter = new ProductListAdapter(this, this.products);
+
+        /*//temp testing of listview displaying
         List<String> tempStringList = new ArrayList<String>();
         for (int x = 0; x < 25; x++){
             tempStringList.add("Product #" + x);
         }
+        */
 
         //populate listview with an adapter
-        ArrayAdapter<String> tempArrayAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempStringList);
+        //ArrayAdapter<String> tempArrayAdapter =
+        //        new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempStringList);
+        //productsLV.setAdapter(tempArrayAdapter);
 
-        productsLV.setAdapter(tempArrayAdapter);
-
+        this.productListAdapter = new ProductListAdapter(this, this.products);
     }
 
     public void productsDetailsOnClick(View view) {
