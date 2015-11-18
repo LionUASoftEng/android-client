@@ -8,8 +8,7 @@ import java.util.Map;
 public enum TransactionApiRequestStatus {
     OK(0),
     INVALID_INPUT(1),
-    UNKNOWN_ERROR(2),
-    LOOKUP_CODE_ALREADY_EXISTS(3);
+    UNKNOWN_ERROR(2);
 
     public int getValue() {
         return value;
