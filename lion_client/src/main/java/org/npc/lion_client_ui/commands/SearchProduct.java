@@ -1,18 +1,20 @@
 package org.npc.lion_client_ui.commands;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import org.npc.lion_client_ui.R;
 import org.npc.lion_client_ui.adapters.ProductListAdapter;
 import org.npc.lion_client_ui.api.models.Product;
+import org.npc.lion_client_ui.api.services.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,6 @@ import java.util.List;
 public class SearchProduct extends AppCompatActivity {
 
     private List<Product> products;
-    private ListView productsLV;
     private ProductListAdapter productListAdapter;
 
     @Override
@@ -28,25 +29,28 @@ public class SearchProduct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
 
-        //Listview for under the search button
-        productsLV = (ListView) findViewById(R.id.products_list_view);
-
         this.products = new ArrayList<>();
         this.productListAdapter = new ProductListAdapter(this, this.products);
 
-        /*//temp testing of listview displaying
-        List<String> tempStringList = new ArrayList<String>();
-        for (int x = 0; x < 25; x++){
-            tempStringList.add("Product #" + x);
-        }
-        */
+        this.getProductsListView().setAdapter(this.productListAdapter);
+        this.getProductsListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ProductDetails.class);
+                Product selectedProduct = (Product) getProductsListView().getItemAtPosition(position);
 
-        //populate listview with an adapter
-        //ArrayAdapter<String> tempArrayAdapter =
-        //        new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempStringList);
-        //productsLV.setAdapter(tempArrayAdapter);
+                intent.putExtra(getString(R.string.lookup_code_extras_key), selectedProduct.getLookupCode());
 
-        this.productListAdapter = new ProductListAdapter(this, this.products);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        (new RetrieveProductsTask()).execute();
     }
 
     public void productsDetailsOnClick(View view) {
@@ -80,5 +84,25 @@ public class SearchProduct extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private ListView getProductsListView() {
+        return (ListView) this.findViewById(R.id.products_list_view);
+    }
+
+    private class RetrieveProductsTask extends AsyncTask<Void, Void, List<Product>> {
+        protected List<Product> doInBackground(Void... params) {
+            return (new ProductService()).getProducts();
+        }
+
+        protected void onPostExecute(List<Product> results) {
+            products.clear();
+
+            for (Product product : results) {
+                products.add(product);
+            }
+
+            productListAdapter.notifyDataSetChanged();
+        }
     }
 }
