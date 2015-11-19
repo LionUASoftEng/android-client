@@ -28,6 +28,11 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
                 lookupCodeTextView.setText(product.getLookupCode());
             }
 
+            TextView descriptionTextView = (TextView) view.findViewById(R.id.description_content_textview);
+            if(descriptionTextView != null){
+                descriptionTextView.setText(product.getDescription());
+            }
+
             TextView quantityTextView = (TextView) view.findViewById(R.id.quantity_textview);
             if (quantityTextView != null) {
                 quantityTextView.setText(Integer.toString(product.getQuantity()));
