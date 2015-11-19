@@ -6,39 +6,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchProduct"
-    android:nestedScrollingEnabled="false">
+        android:nestedScrollingEnabled="false"
+        style="@style/AppTheme">
+        android:nestedScrollingEnabled="false">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lion_imageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/lion_uasoftengr" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lion_imageView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/lion_uasoftengr" />
 
-    <EditText
-        android:id="@+id/inputSearchEditText"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15sp"
-        android:layout_marginRight="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_below="@+id/lion_imageView"
-        android:layout_centerHorizontal="true"
-        android:ellipsize="start"
-        android:gravity="center"
-        android:hint="@string/search_message"
-        android:inputType="text"
-        android:background="@drawable/edittextstyle" />
+<EditText
+android:id="@+id/inputSearchEditText"
+android:layout_marginLeft="15dp"
+android:layout_marginTop="15dp"
+android:layout_marginBottom="15sp"
+android:layout_marginRight="15dp"
+android:layout_width="match_parent"
+android:layout_height="25dp"
+            android:layout_below="@+id/lion_imageView"
+    android:layout_centerHorizontal="true"
+    android:ellipsize="start"
+    android:gravity="center"
+    android:hint="@string/search_message"
+    android:inputType="text"
+    android:background="@drawable/edittextstyle" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/search_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_search"
-        android:onClick="productsDetailsOnClick"
-        android:layout_below="@+id/inputSearchEditText"
-        android:layout_centerHorizontal="true" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/search_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_search"
+            android:onClick="productsDetailsOnClick"
+            android:layout_below="@+id/inputSearchEditText"
+            android:layout_centerHorizontal="true" />
 
-</RelativeLayout>
+
+        <ListView
+            android:id="@+id/products_list_view"
+           android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/search_fab"
+            android:background="#ffffff"
+           android:divider="#f49c0f"
+           android:dividerHeight="2sp" />
+
+
+    </RelativeLayout>
