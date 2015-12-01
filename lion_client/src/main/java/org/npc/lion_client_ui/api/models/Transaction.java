@@ -37,7 +37,7 @@ public class Transaction implements ConvertToJsonInterface, LoadFromJsonInterfac
     public double getAmount() {
         return this.amount;
     }
-    public Transaction setPrice(double amount) {
+    public Transaction setAmount(double amount) {
         this.amount = amount;
         return this;
     }
