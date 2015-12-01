@@ -15,7 +15,7 @@ import java.util.UUID;
 public class TransactionEntryService extends BaseRemoteService {
     public TransactionEntry getTransactionEntry(UUID transactionEntryId) {
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRY }), transactionEntryId
+                (new PathElementInterface[] { TransactionEntryApiMethod.TRANSACTIONENTRY, ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRY }), transactionEntryId
         );
 
         if (rawJsonObject != null) {
@@ -28,7 +28,7 @@ public class TransactionEntryService extends BaseRemoteService {
     public List<TransactionEntry> getTransactionEntries(UUID transactionId) {
         List<TransactionEntry> transactionEntries;
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRIES }), transactionId
+                (new PathElementInterface[] { TransactionEntryApiMethod.TRANSACTIONENTRY, ApiLevel.ONE, TransactionEntryApiMethod.TRANSACTIONENTRIES }), transactionId
         );
 
         if (rawJsonObject != null) {
@@ -42,7 +42,7 @@ public class TransactionEntryService extends BaseRemoteService {
 
     public TransactionEntry putTransactionEntry(TransactionEntry transactionEntry) {
         JSONObject rawJsonObject = this.putSingle(
-                (new PathElementInterface[] { ApiLevel.ONE }), transactionEntry.convertToJson()
+                (new PathElementInterface[] { TransactionEntryApiMethod.TRANSACTIONENTRY, ApiLevel.ONE }), transactionEntry.convertToJson()
         );
 
         if (rawJsonObject != null) {

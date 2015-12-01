@@ -15,7 +15,7 @@ import java.util.UUID;
 public class ProductService extends BaseRemoteService {
     public Product getProduct(UUID productId) {
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, ProductApiMethod.PRODUCT }), productId
+                (new PathElementInterface[] { ProductApiMethod.PRODUCT, ApiLevel.ONE, ProductApiMethod.PRODUCTLOOKUPBYID }), productId
         );
 
         if (rawJsonObject != null) {
@@ -27,7 +27,7 @@ public class ProductService extends BaseRemoteService {
 
     public Product getProductbyLookupCode(String itemLookupCode) {
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, ProductApiMethod.PRODUCTLOOKUP }), itemLookupCode
+                (new PathElementInterface[] { ProductApiMethod.PRODUCT, ApiLevel.ONE, ProductApiMethod.PRODUCTBYITEMLOOKUPCODE}), itemLookupCode
         );
 
         if (rawJsonObject != null) {
@@ -37,11 +37,10 @@ public class ProductService extends BaseRemoteService {
         }
     }
 
-
     public List<Product> getProducts() {
         List<Product> products;
         JSONObject rawJsonObject = this.requestSingle(
-                (new PathElementInterface[] { ApiLevel.ONE, ProductApiMethod.PRODUCTS })
+                (new PathElementInterface[] { ProductApiMethod.PRODUCT, ApiLevel.ONE, ProductApiMethod.PRODUCTS })
         );
 
         if (rawJsonObject != null) {
@@ -55,7 +54,7 @@ public class ProductService extends BaseRemoteService {
 
     public Product putProduct(Product product) {
         JSONObject rawJsonObject = this.putSingle(
-                (new PathElementInterface[] { ApiLevel.ONE }), product.convertToJson()
+                (new PathElementInterface[] { ProductApiMethod.PRODUCT, ApiLevel.ONE }), product.convertToJson()
         );
 
         if (rawJsonObject != null) {

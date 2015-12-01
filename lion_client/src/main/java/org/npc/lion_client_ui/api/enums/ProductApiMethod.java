@@ -7,8 +7,9 @@ import java.util.Map;
 
 public enum ProductApiMethod implements PathElementInterface {
     NONE(""),
-    PRODUCT("byproductid"),
-    PRODUCTLOOKUP("byitemlookupcode"),
+    PRODUCT("product"),
+    PRODUCTLOOKUPBYID("byproductid"),
+    PRODUCTBYITEMLOOKUPCODE("byitemlookupcode"),
     PRODUCTS("products");
 
     @Override
