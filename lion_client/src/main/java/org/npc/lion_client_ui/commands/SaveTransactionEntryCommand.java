@@ -18,7 +18,7 @@ public class SaveTransactionEntryCommand implements ResultCommandInterface<Trans
         return this.transactionEntry;
     }
 
-    public SaveTransactionEntryCommand setTransaction(TransactionEntry transactionEntry){
+    public SaveTransactionEntryCommand setTransactionEntry(TransactionEntry transactionEntry){
         this.transactionEntry = transactionEntry;
         return this;
     }

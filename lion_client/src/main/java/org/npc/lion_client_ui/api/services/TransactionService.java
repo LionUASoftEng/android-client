@@ -43,7 +43,7 @@ public class TransactionService extends BaseRemoteService {
 
     public Transaction putTransaction(Transaction transaction) {
         JSONObject rawJsonObject = this.putSingle(
-                (new PathElementInterface[] { TransactionApiMethod.TRANSACTION, ApiLevel.ONE }), transaction.convertToJson()
+                (new PathElementInterface[]{TransactionApiMethod.TRANSACTION, ApiLevel.ONE}), transaction.convertToJson()
         );
 
         if (rawJsonObject != null) {

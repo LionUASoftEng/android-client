@@ -11,8 +11,16 @@ public class CreateTransactionCommand implements ResultCommandInterface<Transact
         return (new Transaction()).
                 setCashier(UUID.fromString(DEFAULT_CASHIER)). //hard coded cashier until login is established
                 setTransactionType("sale").
-                setAmount(0).setParentId(UUID.fromString("00000000-00000000-00000000-00000000"));
+                setAmount(transaction.getAmount()).
+                setParentId(UUID.fromString(DEFAULT_PARENTID)); //hard coded parentId until use established.
     }
 
+    public CreateTransactionCommand setCurrentTransactionAmount(Double currentTransactionAmount){
+        this.transaction.setAmount(currentTransactionAmount);
+        return this;
+    }
+
+    private Transaction transaction;
     private static final String DEFAULT_CASHIER = "fd6c0fce-9090-470b-9993-2c9ed8ec22fa";
+    private static final String DEFAULT_PARENTID = "2c8c2c1d-a077-4e0c-9a70-02aa0139a2e0";
 }

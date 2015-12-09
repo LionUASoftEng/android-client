@@ -2,26 +2,29 @@ package org.npc.lion_client_ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ListView;
 
-import java.io.Serializable;
+import org.npc.lion_client_ui.adapters.TransactionEntryListAdapter;
 
 public class SearchProduct extends AppCompatActivity {
 
-    private Transaction curTrans;
+    private CurrentTransaction curTrans;
+    private TransactionEntryListAdapter transactionEntryListAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        curTrans = (Transaction)intent.getSerializableExtra("trans");
+        curTrans = (CurrentTransaction)intent.getSerializableExtra(getString(R.string.CURRENT_TRANSACTION));
         setContentView(R.layout.activity_search_product);
+
+        this.transactionEntryListAdapter = new TransactionEntryListAdapter(this, this.curTrans.getEntries());
+        this.getEntriesListView().setAdapter(this.transactionEntryListAdapter);
     }
 
     @Override
@@ -36,7 +39,7 @@ public class SearchProduct extends AppCompatActivity {
         intent.putExtra(
                 this.getResources().getString(R.string.lookup_code_extras_key),
                 inputSearch);
-        intent.putExtra("trans", curTrans);
+        intent.putExtra(getString(R.string.CURRENT_TRANSACTION), curTrans);
 
         this.startActivity(intent);
     }
@@ -66,7 +69,11 @@ public class SearchProduct extends AppCompatActivity {
     public void cancelSearch(View view)
     {
         Intent returnToTrans = new Intent(this, TransactionScreen.class);
-        returnToTrans.putExtra("trans", curTrans);
+        returnToTrans.putExtra(getString(R.string.CURRENT_TRANSACTION), curTrans);
         startActivity(returnToTrans);
+    }
+
+    private ListView getEntriesListView() {
+        return (ListView) this.findViewById(R.id.transaction_entry_list_view);
     }
 }

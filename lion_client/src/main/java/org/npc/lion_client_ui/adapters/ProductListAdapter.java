@@ -23,17 +23,17 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
 
         Product product = this.getItem(position);
         if (product != null) {
-            TextView lookupCodeTextView = (TextView) view.findViewById(R.id.lookup_code_textView);
+            TextView lookupCodeTextView = (TextView) view.findViewById(R.id.product_list_item_lookup_code_text_view);
             if (lookupCodeTextView != null) {
                 lookupCodeTextView.setText(product.getLookupCode());
             }
 
-            TextView descriptionTextView = (TextView) view.findViewById(R.id.description_content_textview);
+            TextView descriptionTextView = (TextView) view.findViewById(R.id.product_list_item_description_text_view);
             if(descriptionTextView != null){
                 descriptionTextView.setText(product.getDescription());
             }
 
-            TextView quantityTextView = (TextView) view.findViewById(R.id.quantity_textview);
+            TextView quantityTextView = (TextView) view.findViewById(R.id.product_list_item_quantity_text_view);
             if (quantityTextView != null) {
                 quantityTextView.setText(Integer.toString(product.getQuantity()));
             }
@@ -43,6 +43,6 @@ public class ProductListAdapter extends ArrayAdapter<Product> {
     }
 
     public ProductListAdapter(Context context, List<Product> products) {
-        super(context, R.layout.activity_product_details, products);
+        super(context, R.layout.product_list_view_item, products);
     }
 }

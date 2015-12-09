@@ -25,7 +25,7 @@
         android:background="@drawable/edittextstyle" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/search_fab"
+        android:id="@+id/search_for_product_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_search"
@@ -33,15 +33,14 @@
         android:layout_below="@+id/inputSearchEditText"
         android:layout_centerHorizontal="true" />
 
-
     <ListView
-        android:id="@+id/products_list_view"
+        android:id="@+id/transaction_entry_list_view"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/search_fab"
+        android:layout_below="@+id/search_for_product_Button"
         android:background="#ffffff"
         android:divider="#f49c0f"
         android:dividerHeight="2sp" />

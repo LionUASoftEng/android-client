@@ -11,6 +11,14 @@
         android:layout_height="fill_parent"
         android:layout_weight="3"
         android:layout_gravity="left"
+        android:text="Lookup-code"/>
+
+    <TextView
+        android:id= "@+id/product_list_item_description_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:layout_gravity="center"
         android:text="greater healing potion"/>
 
     <TextView

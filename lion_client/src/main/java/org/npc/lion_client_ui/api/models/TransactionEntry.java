@@ -25,7 +25,7 @@ public class TransactionEntry implements ConvertToJsonInterface, LoadFromJsonInt
     public UUID getTransactionId() {
         return transactionId;
     }
-    public TransactionEntry setTransactionId(){
+    public TransactionEntry setTransactionId(UUID transactionId){
         this.transactionId = transactionId;
         return this;
     }
@@ -34,7 +34,7 @@ public class TransactionEntry implements ConvertToJsonInterface, LoadFromJsonInt
     public UUID getProductId() {
         return productId;
     }
-    public TransactionEntry setProductId(){
+    public TransactionEntry setProductId(UUID productId){
         this.productId = productId;
         return this;
     }

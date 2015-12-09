@@ -19,7 +19,7 @@
         </activity>
 
         <activity android:name=".TransactionScreen"
-            android:label="Transaction Screen"
+            android:label="@string/Transaction_Screen"
             android:parentActivityName=".StartScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -27,7 +27,7 @@
         </activity>
 
         <activity android:name=".SearchProduct"
-            android:label="Search Product"
+            android:label="@string/Search_Product"
             android:parentActivityName=".TransactionScreen" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,7 +36,7 @@
 
         <activity android:name=".ProductDetails"
             android:label="@string/title_activity_product_details"
-            android:parentActivityName=".commands.SearchProduct" >
+            android:parentActivityName=".SearchProduct" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ProductDetails" />

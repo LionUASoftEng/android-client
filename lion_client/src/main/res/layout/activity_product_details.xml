@@ -113,7 +113,7 @@
                 android:id="@+id/apply_button"
                 style="@style/AppTheme"
                 android:layout_centerInParent="true"
-                android:onClick="applyOnClick" />
+                android:onClick="addTransEntryOnButtonClick" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                 style="@style/AppTheme"
                 android:layout_centerInParent="true"
                 android:layout_toLeftOf="@id/apply_button"
-                android:onClick="cancelOnClick" />
+                android:onClick="cancelEntryOnButtonClick" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
