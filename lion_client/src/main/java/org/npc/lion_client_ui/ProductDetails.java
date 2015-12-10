@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 
@@ -24,6 +25,7 @@ public class ProductDetails extends AppCompatActivity {
     TextView description_content;
     TextView price_textview;
     TextView quantity_textview;
+    EditText temp_edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class ProductDetails extends AppCompatActivity {
         price_textview.setText("Price :$" + String.valueOf(price));
         quantity_textview = (TextView) findViewById(R.id.quantity_textview);
         quantity_textview.setText(R.string.quantity + quantity );
+        temp_edittext = (EditText) findViewById(R.id.inputAddQuantity);
     }
 
     @Override
@@ -70,7 +73,8 @@ public class ProductDetails extends AppCompatActivity {
 
     public void addTransEntryOnButtonClick(View view)
     {
-        quantity = Integer.getInteger("inputAddQuantity");
+        quantity = Integer.parseInt(temp_edittext.getText().toString());
+
         CurrentTransactionEntry tEntry = new CurrentTransactionEntry(productId, price, quantity, description);
         curTrans.addEntry(tEntry);
         Intent returnToTrans = new Intent(this, TransactionScreen.class)

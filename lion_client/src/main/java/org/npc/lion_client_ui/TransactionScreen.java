@@ -75,6 +75,10 @@ public class TransactionScreen extends AppCompatActivity {
         }
     }
 
+    public void doNothing(View view) {
+        //this is doing nothing
+    }
+
     private class CreateTransactionTask extends AsyncTask<Void, Void, Transaction> {
         protected org.npc.lion_client_ui.api.models.Transaction doInBackground(Void... params)
         {
