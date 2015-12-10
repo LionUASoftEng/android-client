@@ -70,6 +70,7 @@ public class ProductDetails extends AppCompatActivity {
 
     public void addTransEntryOnButtonClick(View view)
     {
+        quantity = Integer.getInteger("inputAddQuantity");
         CurrentTransactionEntry tEntry = new CurrentTransactionEntry(productId, price, quantity, description);
         curTrans.addEntry(tEntry);
         Intent returnToTrans = new Intent(this, TransactionScreen.class)
